@@ -19,7 +19,7 @@ public class Question155 {
 
         public void push(int x) {
             dataStack.push(x);
-            if (minStack.isEmpty() || x < minStack.peek()) {
+            if (minStack.isEmpty() || x <= minStack.peek()) {
                 minStack.push(x);
             }
         }
@@ -28,7 +28,7 @@ public class Question155 {
             if (dataStack.isEmpty()) {
                 return;
             }
-            if (dataStack.size() == minStack.size()) {
+            if (dataStack.peek().equals(minStack.peek())) {
                 minStack.pop();
             }
             dataStack.pop();
