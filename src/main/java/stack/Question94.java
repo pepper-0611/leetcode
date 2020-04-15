@@ -18,6 +18,39 @@ public class Question94 {
     }
 
     public List<Integer> inorderTraversal(TreeNode root) {
+        LinkedList<Integer> res = new LinkedList<>();
+        TreeNode cur = root;
+
+        while (cur != null) {
+            if (cur.left == null) {
+                res.add(cur.val);
+                cur = cur.right;
+            } else {
+                TreeNode pre = findInOrderTraversalPre(cur);
+                //visited
+                if (pre.right == cur) {
+                    pre.right = null;
+                    res.add(cur.val);
+                    cur = cur.right;
+                } else {
+                    pre.right = cur;
+                    cur = cur.left;
+                }
+            }
+        }
+        return res;
+    }
+
+    private TreeNode findInOrderTraversalPre(TreeNode cur) {
+        TreeNode pre = cur.left;//not null always
+        while (pre.right != null && pre.right != cur) {
+            pre = pre.right;
+        }
+        return pre;
+    }
+
+
+    public List<Integer> inorderTraversal_stack(TreeNode root) {
         LinkedList<TreeNode> stack = new LinkedList<>();
         LinkedList<Integer> res = new LinkedList<>();
         TreeNode cur = root;
