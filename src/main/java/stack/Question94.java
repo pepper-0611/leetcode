@@ -18,12 +18,27 @@ public class Question94 {
     }
 
     public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> res = new LinkedList<>();
-        inorderTraversal_recursive(root, res);
+        LinkedList<TreeNode> stack = new LinkedList<>();
+        LinkedList<Integer> res = new LinkedList<>();
+        TreeNode cur = root;
+        while (cur != null || !stack.isEmpty()) {
+            if (cur == null) {
+                cur = stack.pop();
+                res.add(cur.val);
+                cur = cur.right;
+                continue;
+            }
+
+            if (cur.left != null) {
+                stack.push(cur);
+                cur = cur.left;
+            } else {
+                res.add(cur.val);
+                cur = cur.right;
+            }
+        }
         return res;
     }
-
-
 
 
     public void inorderTraversal_recursive(TreeNode node, List<Integer> res) {
