@@ -20,8 +20,32 @@ public class Question145 {
     }
 
     public List<Integer> postorderTraversal(TreeNode root) {
-        return postorderTraversal_visited_method(root);
+        return postorderTraversal_pre_method(root);
     }
+
+    public List<Integer> postorderTraversal_pre_method(TreeNode root) {
+        LinkedList<TreeNode> stack = new LinkedList<>();
+        LinkedList<Integer> res = new LinkedList<>();
+        TreeNode cur = root, pre = null;
+        while (cur != null) {
+            while (cur.left != null) {
+                stack.push(cur);
+                cur = cur.left;
+            }
+            while (cur.right == null || cur.right == pre) {
+                res.add(cur.val);
+                pre = cur;
+                if (stack.isEmpty()) {
+                    return res;
+                }
+                cur = stack.pop();
+            }
+            stack.push(cur);
+            cur = cur.right;
+        }
+        return res;
+    }
+
 
     public List<Integer> postorderTraversal_visited_method(TreeNode root) {
         TreeNode cur = root;
