@@ -18,7 +18,7 @@ public class SelfPriorityBlockingQueue<E> {
 
     public static <T> void shiftUpByComparable(Object[] array, T x,
             int k) {
-        Comparable<? super T> key = (Comparable<? super T>) k;
+        Comparable<? super T> key = (Comparable<? super T>) x;
         while (k > 0) {
             int parent = (k - 1) >>> 1;
             Object e = array[parent];
