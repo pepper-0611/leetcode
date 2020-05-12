@@ -10,7 +10,7 @@ public class Question207Test {
         int nums = 2;
         int[][] table = new int[1][];
         table[0] = new int[]{1, 0};
-        boolean ok = new Question207().canFinish(nums,  table);
+        boolean ok = new Question207_dfs().canFinish(nums,  table);
         Assert.assertTrue(ok);
     }
 }
